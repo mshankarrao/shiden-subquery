@@ -1,0 +1,18 @@
+specVersion: 0.0.1
+description: 'A subquery project provide common api for a substrate based network'
+repository: ''
+schema: ./schema.graphql
+network:
+  endpoint: 'wss://shiden.api.onfinality.io/ws?apikey=1d475914-4bae-4ca2-97fc-8d686398eca0'
+dataSources:
+  - name: main
+    kind: substrate/Runtime
+    startBlock: 1
+    mapping:
+      handlers:
+        - handler: handleBlock
+          kind: substrate/BlockHandler
+        - handler: handleEvent
+          kind: substrate/EventHandler
+        - handler: handleCall
+          kind: substrate/CallHandler
