@@ -1,0 +1,1 @@
+export { default as shiden } from './shiden/definitions';
