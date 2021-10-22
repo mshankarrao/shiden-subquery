@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package shiden-subquery/api-interfaces --input ./src/api-interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package shiden-subquery/api-interfaces --endpoint ./src/api-interfaces/shiden.json --output ./src/api-interfaces --strict",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package shiden-subquery/api-interfaces --endpoint ./src/api-interfaces/shiden.json --output ./src/api-interfaces",
     "build": "tsc -b",
     "prepack": "rm -rf dist && npm build",
     "test": "jest",

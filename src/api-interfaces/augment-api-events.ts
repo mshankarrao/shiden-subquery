@@ -51,6 +51,10 @@ declare module '@polkadot/api/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     collatorSelection: {
       CandidateAdded: AugmentedEvent<ApiType, [AccountId, Balance]>;
@@ -58,6 +62,10 @@ declare module '@polkadot/api/types/events' {
       NewCandidacyBond: AugmentedEvent<ApiType, [Balance]>;
       NewDesiredCandidates: AugmentedEvent<ApiType, [u32]>;
       NewInvulnerables: AugmentedEvent<ApiType, [Vec<AccountId>]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     cumulusXcm: {
       /**
@@ -75,18 +83,30 @@ declare module '@polkadot/api/types/events' {
        * \[ id \]
        **/
       UnsupportedVersion: AugmentedEvent<ApiType, [U8aFixed]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     ethCall: {
       /**
        * A call just executed. \[result\]
        **/
       Executed: AugmentedEvent<ApiType, [AccountId, DispatchResult]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     ethereum: {
       /**
        * An ethereum transaction was successfully executed. [from, to/contract_address, transaction_hash, exit_reason]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, ExitReason]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     evm: {
       /**
@@ -117,6 +137,10 @@ declare module '@polkadot/api/types/events' {
        * Ethereum events from contracts.
        **/
       Log: AugmentedEvent<ApiType, [EvmLog]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     identity: {
       /**
@@ -161,6 +185,10 @@ declare module '@polkadot/api/types/events' {
        * main identity account to the sub-identity account. \[sub, main, deposit\]
        **/
       SubIdentityRevoked: AugmentedEvent<ApiType, [AccountId, AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     multisig: {
       /**
@@ -180,6 +208,10 @@ declare module '@polkadot/api/types/events' {
        * A new multisig operation has begun. \[approving, multisig, call_hash\]
        **/
       NewMultisig: AugmentedEvent<ApiType, [AccountId, AccountId, CallHash]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     parachainSystem: {
       /**
@@ -205,6 +237,10 @@ declare module '@polkadot/api/types/events' {
        * block number.
        **/
       ValidationFunctionStored: AugmentedEvent<ApiType, [RelayChainBlockNumber]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     session: {
       /**
@@ -212,6 +248,10 @@ declare module '@polkadot/api/types/events' {
        * number as the type might suggest.
        **/
       NewSession: AugmentedEvent<ApiType, [SessionIndex]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     sudo: {
       /**
@@ -226,6 +266,10 @@ declare module '@polkadot/api/types/events' {
        * A sudo just took place. \[result\]
        **/
       SudoAsDone: AugmentedEvent<ApiType, [DispatchResult]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     system: {
       /**
@@ -252,6 +296,10 @@ declare module '@polkadot/api/types/events' {
        * On on-chain remark happened. \[origin, remark_hash\]
        **/
       Remarked: AugmentedEvent<ApiType, [AccountId, Hash]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     utility: {
       /**
@@ -267,6 +315,10 @@ declare module '@polkadot/api/types/events' {
        * A single item within a Batch of dispatches has completed with no error.
        **/
       ItemCompleted: AugmentedEvent<ApiType, []>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     vesting: {
       /**
@@ -279,9 +331,14 @@ declare module '@polkadot/api/types/events' {
        * \[account, unvested\]
        **/
       VestingUpdated: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
   }
 
   export interface DecoratedEvents<ApiType extends ApiTypes> extends AugmentedEvents<ApiType> {
+    [key: string]: ModuleEvents<ApiType>;
   }
 }

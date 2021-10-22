@@ -34,6 +34,10 @@ declare module '@polkadot/api/types/errors' {
        * Uncles already set in the block.
        **/
       UnclesAlreadySet: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     balances: {
       /**
@@ -68,6 +72,10 @@ declare module '@polkadot/api/types/errors' {
        * Vesting balance too high to send value
        **/
       VestingBalance: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     collatorSelection: {
       /**
@@ -106,6 +114,10 @@ declare module '@polkadot/api/types/errors' {
        * Validator ID is not yet registered
        **/
       ValidatorNotRegistered: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     ethCall: {
       /**
@@ -120,6 +132,10 @@ declare module '@polkadot/api/types/errors' {
        * Signature and account mismatched.
        **/
       InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     ethereum: {
       /**
@@ -130,6 +146,10 @@ declare module '@polkadot/api/types/errors' {
        * Pre-log is present, therefore transact is not allowed.
        **/
       PreLogExists: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     evm: {
       /**
@@ -156,6 +176,10 @@ declare module '@polkadot/api/types/errors' {
        * Withdraw fee failed
        **/
       WithdrawFailed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     identity: {
       /**
@@ -222,6 +246,10 @@ declare module '@polkadot/api/types/errors' {
        * Too many subs-accounts.
        **/
       TooManySubAccounts: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     multisig: {
       /**
@@ -280,6 +308,10 @@ declare module '@polkadot/api/types/errors' {
        * A different timepoint was given to the multisig operation that is underway.
        **/
       WrongTimepoint: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     parachainSystem: {
       /**
@@ -315,6 +347,10 @@ declare module '@polkadot/api/types/errors' {
        * The inherent which supplies the validation data did not run this block
        **/
       ValidationDataNotAvailable: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     session: {
       /**
@@ -337,12 +373,20 @@ declare module '@polkadot/api/types/errors' {
        * No keys are associated with this account.
        **/
       NoKeys: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     sudo: {
       /**
        * Sender must be the Sudo account
        **/
       RequireSudo: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     system: {
       /**
@@ -369,12 +413,20 @@ declare module '@polkadot/api/types/errors' {
        * and the new runtime.
        **/
       SpecVersionNeedsToIncrease: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     utility: {
       /**
        * Too many calls batched.
        **/
       TooManyCalls: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     vesting: {
       /**
@@ -389,9 +441,14 @@ declare module '@polkadot/api/types/errors' {
        * The account given is not vesting.
        **/
       NotVesting: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
   }
 
   export interface DecoratedErrors<ApiType extends ApiTypes> extends AugmentedErrors<ApiType> {
+    [key: string]: ModuleErrors<ApiType>;
   }
 }

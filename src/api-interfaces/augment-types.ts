@@ -58,7 +58,7 @@ import type { ClassDetails, ClassId, ClassMetadata, DepositBalance, DepositBalan
 import type { Multisig, Timepoint } from '@polkadot/types/interfaces/utility';
 import type { VestingInfo } from '@polkadot/types/interfaces/vesting';
 import type { AccountId32Junction, AccountIndex64Junction, AccountKey20Junction, AssetInstance, BodyId, BodyPart, BodyPartAtLeastProportion, BodyPartFraction, BodyPartMoreThanProportion, DoubleEncodedCall, InboundStatus, Junction, MultiAsset, MultiAssetAbstractFungible, MultiAssetAbstractNonFungible, MultiAssetConcreteFungible, MultiAssetConcreteNonFungible, MultiLocation, NetworkId, OutboundStatus, Outcome, PluralityJunction, QueueConfigData, VersionedMultiAsset, VersionedMultiLocation, VersionedXcm, Xcm, XcmAssetEffects, XcmError, XcmHrmpChannelAccepted, XcmHrmpChannelClosing, XcmHrmpNewChannelOpenRequest, XcmOrder, XcmOrderBuyExecution, XcmOrderDepositAsset, XcmOrderDepositReserveAsset, XcmOrderExchangeAsset, XcmOrderInitiateReserveWithdraw, XcmOrderInitiateTeleport, XcmOrderQueryHolding, XcmOrigin, XcmOriginKind, XcmQueryResponse, XcmRelayedFrom, XcmReserveAssetDeposit, XcmResponse, XcmTeleportAsset, XcmTransact, XcmTransferAsset, XcmTransferReserveAsset, XcmWithdrawAsset, XcmpMessageFormat } from '@polkadot/types/interfaces/xcm';
-import type { AuthorityVote, ChallengeGameOf, Claim, ClaimId, ClaimVote, Decision, DollarRate, EraStakingPoints, Lockdrop, Parameters, PredicateContractOf, PredicateHash, PrefabOvmModule, Property, PropertyOf, SmartContract, StakingParameters, TickerRate, VoteCounts } from 'shiden-subquery/api-interfaces/shiden';
+import type { EraRewardAndStake, EraStakingPoints, SmartContract } from 'shiden-subquery/api-interfaces/shiden';
 
 declare module '@polkadot/types/types/registry' {
   export interface InterfaceTypes {
@@ -69,7 +69,6 @@ declare module '@polkadot/types/types/registry' {
     'Compact<AuctionIndex>': Compact<AuctionIndex>;
     'Compact<AuthIndex>': Compact<AuthIndex>;
     'Compact<AuthorityIndex>': Compact<AuthorityIndex>;
-    'Compact<AuthorityVote>': Compact<AuthorityVote>;
     'Compact<AuthorityWeight>': Compact<AuthorityWeight>;
     'Compact<BabeAuthorityWeight>': Compact<BabeAuthorityWeight>;
     'Compact<BabeBlockWeight>': Compact<BabeBlockWeight>;
@@ -84,7 +83,6 @@ declare module '@polkadot/types/types/registry' {
     'Compact<CoreIndex>': Compact<CoreIndex>;
     'Compact<DepositBalance>': Compact<DepositBalance>;
     'Compact<DepositBalanceOf>': Compact<DepositBalanceOf>;
-    'Compact<DollarRate>': Compact<DollarRate>;
     'Compact<EraIndex>': Compact<EraIndex>;
     'Compact<EventIndex>': Compact<EventIndex>;
     'Compact<ExtendedBalance>': Compact<ExtendedBalance>;
@@ -215,7 +213,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<AuthoritySetChange>': Option<AuthoritySetChange>;
     'Option<AuthoritySetChanges>': Option<AuthoritySetChanges>;
     'Option<AuthoritySignature>': Option<AuthoritySignature>;
-    'Option<AuthorityVote>': Option<AuthorityVote>;
     'Option<AuthorityWeight>': Option<AuthorityWeight>;
     'Option<AvailabilityBitfield>': Option<AvailabilityBitfield>;
     'Option<AvailabilityBitfieldRecord>': Option<AvailabilityBitfieldRecord>;
@@ -280,12 +277,8 @@ declare module '@polkadot/types/types/registry' {
     'Option<CandidateReceipt>': Option<CandidateReceipt>;
     'Option<ChainProperties>': Option<ChainProperties>;
     'Option<ChainType>': Option<ChainType>;
-    'Option<ChallengeGameOf>': Option<ChallengeGameOf>;
     'Option<ChangesTrieConfiguration>': Option<ChangesTrieConfiguration>;
     'Option<ChangesTrieSignal>': Option<ChangesTrieSignal>;
-    'Option<Claim>': Option<Claim>;
-    'Option<ClaimId>': Option<ClaimId>;
-    'Option<ClaimVote>': Option<ClaimVote>;
     'Option<ClassDetails>': Option<ClassDetails>;
     'Option<ClassId>': Option<ClassId>;
     'Option<ClassMetadata>': Option<ClassMetadata>;
@@ -348,7 +341,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<CoreOccupied>': Option<CoreOccupied>;
     'Option<CreatedBlock>': Option<CreatedBlock>;
     'Option<Data>': Option<Data>;
-    'Option<Decision>': Option<Decision>;
     'Option<DeferredOffenceOf>': Option<DeferredOffenceOf>;
     'Option<DefunctVoter>': Option<DefunctVoter>;
     'Option<DelayKind>': Option<DelayKind>;
@@ -374,7 +366,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<DispatchResultTo198>': Option<DispatchResultTo198>;
     'Option<DisputeStatement>': Option<DisputeStatement>;
     'Option<DisputeStatementSet>': Option<DisputeStatementSet>;
-    'Option<DollarRate>': Option<DollarRate>;
     'Option<DoNotConstruct>': Option<DoNotConstruct>;
     'Option<DoubleEncodedCall>': Option<DoubleEncodedCall>;
     'Option<DoubleMapTypeLatest>': Option<DoubleMapTypeLatest>;
@@ -398,6 +389,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<EpochAuthorship>': Option<EpochAuthorship>;
     'Option<EraIndex>': Option<EraIndex>;
     'Option<EraPoints>': Option<EraPoints>;
+    'Option<EraRewardAndStake>': Option<EraRewardAndStake>;
     'Option<EraRewardPoints>': Option<EraRewardPoints>;
     'Option<EraRewards>': Option<EraRewards>;
     'Option<EraStakingPoints>': Option<EraStakingPoints>;
@@ -597,7 +589,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<Limits>': Option<Limits>;
     'Option<LimitsTo264>': Option<LimitsTo264>;
     'Option<LocalValidationData>': Option<LocalValidationData>;
-    'Option<Lockdrop>': Option<Lockdrop>;
     'Option<LockIdentifier>': Option<LockIdentifier>;
     'Option<LookupSource>': Option<LookupSource>;
     'Option<LookupTarget>': Option<LookupTarget>;
@@ -704,7 +695,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<ParaId>': Option<ParaId>;
     'Option<ParaInfo>': Option<ParaInfo>;
     'Option<ParaLifecycle>': Option<ParaLifecycle>;
-    'Option<Parameters>': Option<Parameters>;
     'Option<ParaPastCodeMeta>': Option<ParaPastCodeMeta>;
     'Option<ParaScheduling>': Option<ParaScheduling>;
     'Option<ParathreadClaim>': Option<ParathreadClaim>;
@@ -740,9 +730,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<PluralityJunction>': Option<PluralityJunction>;
     'Option<Points>': Option<Points>;
     'Option<Precommits>': Option<Precommits>;
-    'Option<PredicateContractOf>': Option<PredicateContractOf>;
-    'Option<PredicateHash>': Option<PredicateHash>;
-    'Option<PrefabOvmModule>': Option<PrefabOvmModule>;
     'Option<PrefabWasmModule>': Option<PrefabWasmModule>;
     'Option<PrefixedStorageKey>': Option<PrefixedStorageKey>;
     'Option<PreimageStatus>': Option<PreimageStatus>;
@@ -751,8 +738,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<Prevotes>': Option<Prevotes>;
     'Option<Priority>': Option<Priority>;
     'Option<PriorLock>': Option<PriorLock>;
-    'Option<Property>': Option<Property>;
-    'Option<PropertyOf>': Option<PropertyOf>;
     'Option<PropIndex>': Option<PropIndex>;
     'Option<Proposal>': Option<Proposal>;
     'Option<ProposalIndex>': Option<ProposalIndex>;
@@ -893,7 +878,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<StakingLedger>': Option<StakingLedger>;
     'Option<StakingLedgerTo223>': Option<StakingLedgerTo223>;
     'Option<StakingLedgerTo240>': Option<StakingLedgerTo240>;
-    'Option<StakingParameters>': Option<StakingParameters>;
     'Option<Statement>': Option<Statement>;
     'Option<StatementKind>': Option<StatementKind>;
     'Option<StorageChangeSet>': Option<StorageChangeSet>;
@@ -944,7 +928,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<TAssetBalance>': Option<TAssetBalance>;
     'Option<TAssetDepositBalance>': Option<TAssetDepositBalance>;
     'Option<Text>': Option<Text>;
-    'Option<TickerRate>': Option<TickerRate>;
     'Option<Timepoint>': Option<Timepoint>;
     'Option<TokenError>': Option<TokenError>;
     'Option<TombstoneContractInfo>': Option<TombstoneContractInfo>;
@@ -1006,7 +989,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<VestingInfo>': Option<VestingInfo>;
     'Option<VestingSchedule>': Option<VestingSchedule>;
     'Option<Vote>': Option<Vote>;
-    'Option<VoteCounts>': Option<VoteCounts>;
     'Option<VoteIndex>': Option<VoteIndex>;
     'Option<Voter>': Option<Voter>;
     'Option<VoterInfo>': Option<VoterInfo>;
@@ -1114,7 +1096,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<AuthoritySetChange>': Vec<AuthoritySetChange>;
     'Vec<AuthoritySetChanges>': Vec<AuthoritySetChanges>;
     'Vec<AuthoritySignature>': Vec<AuthoritySignature>;
-    'Vec<AuthorityVote>': Vec<AuthorityVote>;
     'Vec<AuthorityWeight>': Vec<AuthorityWeight>;
     'Vec<AvailabilityBitfield>': Vec<AvailabilityBitfield>;
     'Vec<AvailabilityBitfieldRecord>': Vec<AvailabilityBitfieldRecord>;
@@ -1179,12 +1160,8 @@ declare module '@polkadot/types/types/registry' {
     'Vec<CandidateReceipt>': Vec<CandidateReceipt>;
     'Vec<ChainProperties>': Vec<ChainProperties>;
     'Vec<ChainType>': Vec<ChainType>;
-    'Vec<ChallengeGameOf>': Vec<ChallengeGameOf>;
     'Vec<ChangesTrieConfiguration>': Vec<ChangesTrieConfiguration>;
     'Vec<ChangesTrieSignal>': Vec<ChangesTrieSignal>;
-    'Vec<Claim>': Vec<Claim>;
-    'Vec<ClaimId>': Vec<ClaimId>;
-    'Vec<ClaimVote>': Vec<ClaimVote>;
     'Vec<ClassDetails>': Vec<ClassDetails>;
     'Vec<ClassId>': Vec<ClassId>;
     'Vec<ClassMetadata>': Vec<ClassMetadata>;
@@ -1247,7 +1224,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<CoreOccupied>': Vec<CoreOccupied>;
     'Vec<CreatedBlock>': Vec<CreatedBlock>;
     'Vec<Data>': Vec<Data>;
-    'Vec<Decision>': Vec<Decision>;
     'Vec<DeferredOffenceOf>': Vec<DeferredOffenceOf>;
     'Vec<DefunctVoter>': Vec<DefunctVoter>;
     'Vec<DelayKind>': Vec<DelayKind>;
@@ -1273,7 +1249,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<DispatchResultTo198>': Vec<DispatchResultTo198>;
     'Vec<DisputeStatement>': Vec<DisputeStatement>;
     'Vec<DisputeStatementSet>': Vec<DisputeStatementSet>;
-    'Vec<DollarRate>': Vec<DollarRate>;
     'Vec<DoNotConstruct>': Vec<DoNotConstruct>;
     'Vec<DoubleEncodedCall>': Vec<DoubleEncodedCall>;
     'Vec<DoubleMapTypeLatest>': Vec<DoubleMapTypeLatest>;
@@ -1297,6 +1272,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<EpochAuthorship>': Vec<EpochAuthorship>;
     'Vec<EraIndex>': Vec<EraIndex>;
     'Vec<EraPoints>': Vec<EraPoints>;
+    'Vec<EraRewardAndStake>': Vec<EraRewardAndStake>;
     'Vec<EraRewardPoints>': Vec<EraRewardPoints>;
     'Vec<EraRewards>': Vec<EraRewards>;
     'Vec<EraStakingPoints>': Vec<EraStakingPoints>;
@@ -1496,7 +1472,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<Limits>': Vec<Limits>;
     'Vec<LimitsTo264>': Vec<LimitsTo264>;
     'Vec<LocalValidationData>': Vec<LocalValidationData>;
-    'Vec<Lockdrop>': Vec<Lockdrop>;
     'Vec<LockIdentifier>': Vec<LockIdentifier>;
     'Vec<LookupSource>': Vec<LookupSource>;
     'Vec<LookupTarget>': Vec<LookupTarget>;
@@ -1603,7 +1578,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<ParaId>': Vec<ParaId>;
     'Vec<ParaInfo>': Vec<ParaInfo>;
     'Vec<ParaLifecycle>': Vec<ParaLifecycle>;
-    'Vec<Parameters>': Vec<Parameters>;
     'Vec<ParaPastCodeMeta>': Vec<ParaPastCodeMeta>;
     'Vec<ParaScheduling>': Vec<ParaScheduling>;
     'Vec<ParathreadClaim>': Vec<ParathreadClaim>;
@@ -1639,9 +1613,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<PluralityJunction>': Vec<PluralityJunction>;
     'Vec<Points>': Vec<Points>;
     'Vec<Precommits>': Vec<Precommits>;
-    'Vec<PredicateContractOf>': Vec<PredicateContractOf>;
-    'Vec<PredicateHash>': Vec<PredicateHash>;
-    'Vec<PrefabOvmModule>': Vec<PrefabOvmModule>;
     'Vec<PrefabWasmModule>': Vec<PrefabWasmModule>;
     'Vec<PrefixedStorageKey>': Vec<PrefixedStorageKey>;
     'Vec<PreimageStatus>': Vec<PreimageStatus>;
@@ -1650,8 +1621,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<Prevotes>': Vec<Prevotes>;
     'Vec<Priority>': Vec<Priority>;
     'Vec<PriorLock>': Vec<PriorLock>;
-    'Vec<Property>': Vec<Property>;
-    'Vec<PropertyOf>': Vec<PropertyOf>;
     'Vec<PropIndex>': Vec<PropIndex>;
     'Vec<Proposal>': Vec<Proposal>;
     'Vec<ProposalIndex>': Vec<ProposalIndex>;
@@ -1792,7 +1761,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<StakingLedger>': Vec<StakingLedger>;
     'Vec<StakingLedgerTo223>': Vec<StakingLedgerTo223>;
     'Vec<StakingLedgerTo240>': Vec<StakingLedgerTo240>;
-    'Vec<StakingParameters>': Vec<StakingParameters>;
     'Vec<Statement>': Vec<Statement>;
     'Vec<StatementKind>': Vec<StatementKind>;
     'Vec<StorageChangeSet>': Vec<StorageChangeSet>;
@@ -1843,7 +1811,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<TAssetBalance>': Vec<TAssetBalance>;
     'Vec<TAssetDepositBalance>': Vec<TAssetDepositBalance>;
     'Vec<Text>': Vec<Text>;
-    'Vec<TickerRate>': Vec<TickerRate>;
     'Vec<Timepoint>': Vec<Timepoint>;
     'Vec<TokenError>': Vec<TokenError>;
     'Vec<TombstoneContractInfo>': Vec<TombstoneContractInfo>;
@@ -1905,7 +1872,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<VestingInfo>': Vec<VestingInfo>;
     'Vec<VestingSchedule>': Vec<VestingSchedule>;
     'Vec<Vote>': Vec<Vote>;
-    'Vec<VoteCounts>': Vec<VoteCounts>;
     'Vec<VoteIndex>': Vec<VoteIndex>;
     'Vec<Voter>': Vec<Voter>;
     'Vec<VoterInfo>': Vec<VoterInfo>;
@@ -2013,7 +1979,6 @@ declare module '@polkadot/types/types/registry' {
     AuthoritySetChange: AuthoritySetChange;
     AuthoritySetChanges: AuthoritySetChanges;
     AuthoritySignature: AuthoritySignature;
-    AuthorityVote: AuthorityVote;
     AuthorityWeight: AuthorityWeight;
     AvailabilityBitfield: AvailabilityBitfield;
     AvailabilityBitfieldRecord: AvailabilityBitfieldRecord;
@@ -2078,12 +2043,8 @@ declare module '@polkadot/types/types/registry' {
     CandidateReceipt: CandidateReceipt;
     ChainProperties: ChainProperties;
     ChainType: ChainType;
-    ChallengeGameOf: ChallengeGameOf;
     ChangesTrieConfiguration: ChangesTrieConfiguration;
     ChangesTrieSignal: ChangesTrieSignal;
-    Claim: Claim;
-    ClaimId: ClaimId;
-    ClaimVote: ClaimVote;
     ClassDetails: ClassDetails;
     ClassId: ClassId;
     ClassMetadata: ClassMetadata;
@@ -2146,7 +2107,6 @@ declare module '@polkadot/types/types/registry' {
     CoreOccupied: CoreOccupied;
     CreatedBlock: CreatedBlock;
     Data: Data;
-    Decision: Decision;
     DeferredOffenceOf: DeferredOffenceOf;
     DefunctVoter: DefunctVoter;
     DelayKind: DelayKind;
@@ -2172,7 +2132,6 @@ declare module '@polkadot/types/types/registry' {
     DispatchResultTo198: DispatchResultTo198;
     DisputeStatement: DisputeStatement;
     DisputeStatementSet: DisputeStatementSet;
-    DollarRate: DollarRate;
     DoNotConstruct: DoNotConstruct;
     DoubleEncodedCall: DoubleEncodedCall;
     DoubleMapTypeLatest: DoubleMapTypeLatest;
@@ -2196,6 +2155,7 @@ declare module '@polkadot/types/types/registry' {
     EpochAuthorship: EpochAuthorship;
     EraIndex: EraIndex;
     EraPoints: EraPoints;
+    EraRewardAndStake: EraRewardAndStake;
     EraRewardPoints: EraRewardPoints;
     EraRewards: EraRewards;
     EraStakingPoints: EraStakingPoints;
@@ -2395,7 +2355,6 @@ declare module '@polkadot/types/types/registry' {
     Limits: Limits;
     LimitsTo264: LimitsTo264;
     LocalValidationData: LocalValidationData;
-    Lockdrop: Lockdrop;
     LockIdentifier: LockIdentifier;
     LookupSource: LookupSource;
     LookupTarget: LookupTarget;
@@ -2502,7 +2461,6 @@ declare module '@polkadot/types/types/registry' {
     ParaId: ParaId;
     ParaInfo: ParaInfo;
     ParaLifecycle: ParaLifecycle;
-    Parameters: Parameters;
     ParaPastCodeMeta: ParaPastCodeMeta;
     ParaScheduling: ParaScheduling;
     ParathreadClaim: ParathreadClaim;
@@ -2538,9 +2496,6 @@ declare module '@polkadot/types/types/registry' {
     PluralityJunction: PluralityJunction;
     Points: Points;
     Precommits: Precommits;
-    PredicateContractOf: PredicateContractOf;
-    PredicateHash: PredicateHash;
-    PrefabOvmModule: PrefabOvmModule;
     PrefabWasmModule: PrefabWasmModule;
     PrefixedStorageKey: PrefixedStorageKey;
     PreimageStatus: PreimageStatus;
@@ -2549,8 +2504,6 @@ declare module '@polkadot/types/types/registry' {
     Prevotes: Prevotes;
     Priority: Priority;
     PriorLock: PriorLock;
-    Property: Property;
-    PropertyOf: PropertyOf;
     PropIndex: PropIndex;
     Proposal: Proposal;
     ProposalIndex: ProposalIndex;
@@ -2691,7 +2644,6 @@ declare module '@polkadot/types/types/registry' {
     StakingLedger: StakingLedger;
     StakingLedgerTo223: StakingLedgerTo223;
     StakingLedgerTo240: StakingLedgerTo240;
-    StakingParameters: StakingParameters;
     Statement: Statement;
     StatementKind: StatementKind;
     StorageChangeSet: StorageChangeSet;
@@ -2742,7 +2694,6 @@ declare module '@polkadot/types/types/registry' {
     TAssetBalance: TAssetBalance;
     TAssetDepositBalance: TAssetDepositBalance;
     Text: Text;
-    TickerRate: TickerRate;
     Timepoint: Timepoint;
     TokenError: TokenError;
     TombstoneContractInfo: TombstoneContractInfo;
@@ -2804,7 +2755,6 @@ declare module '@polkadot/types/types/registry' {
     VestingInfo: VestingInfo;
     VestingSchedule: VestingSchedule;
     Vote: Vote;
-    VoteCounts: VoteCounts;
     VoteIndex: VoteIndex;
     Voter: Voter;
     VoterInfo: VoterInfo;

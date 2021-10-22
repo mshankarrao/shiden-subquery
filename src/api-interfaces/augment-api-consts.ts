@@ -2,6 +2,7 @@
 /* eslint-disable */
 
 import type { Vec, u16, u32 } from '@polkadot/types';
+import type { Codec } from '@polkadot/types/types';
 import type { Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight } from '@polkadot/types/interfaces/runtime';
 import type { RuntimeVersion } from '@polkadot/types/interfaces/state';
 import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
@@ -17,6 +18,10 @@ declare module '@polkadot/api/types/consts' {
        * `UncleGenerations + 1` before `now`.
        **/
       uncleGenerations: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     balances: {
       /**
@@ -32,12 +37,20 @@ declare module '@polkadot/api/types/consts' {
        * The maximum number of named reserves that can exist on an account.
        **/
       maxReserves: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     blockReward: {
       /**
        * The amount of issuance for each block.
        **/
       rewardAmount: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     ethCall: {
       /**
@@ -48,6 +61,10 @@ declare module '@polkadot/api/types/consts' {
        * The call magic number.
        **/
       callMagicNumber: u16 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     identity: {
       /**
@@ -78,6 +95,10 @@ declare module '@polkadot/api/types/consts' {
        * another trie item whose value is the size of an account ID plus 32 bytes.
        **/
       subAccountDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     multisig: {
       /**
@@ -99,6 +120,10 @@ declare module '@polkadot/api/types/consts' {
        * The maximum amount of signatories allowed in the multisig.
        **/
       maxSignatories: u16 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     system: {
       /**
@@ -129,6 +154,10 @@ declare module '@polkadot/api/types/consts' {
        * Get the chain's current version.
        **/
       version: RuntimeVersion & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     timestamp: {
       /**
@@ -138,6 +167,10 @@ declare module '@polkadot/api/types/consts' {
        * period on default settings.
        **/
       minimumPeriod: Moment & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     transactionPayment: {
       /**
@@ -148,21 +181,34 @@ declare module '@polkadot/api/types/consts' {
        * The polynomial that is applied in order to derive fee from weight.
        **/
       weightToFee: Vec<WeightToFeeCoefficient> & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     utility: {
       /**
        * The limit on the number of batched calls.
        **/
       batchedCallsLimit: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     vesting: {
       /**
        * The minimum amount transferred to call `vested_transfer`.
        **/
       minVestedTransfer: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
   }
 
   export interface QueryableConsts<ApiType extends ApiTypes> extends AugmentedConsts<ApiType> {
+    [key: string]: QueryableModuleConsts;
   }
 }
